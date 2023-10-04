@@ -1,0 +1,84 @@
+/*
+You have been given a singly linked list of integers along with an integer 'N'. Write a function to append the last 'N' nodes towards the front of the singly linked list and returns the new head to the list.
+Hint:
+Identify how many pointers you require and try traversing them to right places and connect nodes accordingly also don't forget to disconnect what's required else it could create cycles.
+Input format :
+The first line contains an Integer 't' which denotes the number of test cases or queries to be run. Then the test cases follow.
+
+The first line of each test case or query contains the elements of the singly linked list separated by a single space. 
+
+The second line contains the integer value 'N'. It denotes the number of nodes to be moved from last to the front of the singly linked list.
+Output format :
+For each test case/query, print the resulting singly linked list of integers in a row, separated by a single space.
+
+Output for every test case will be printed in a seperate line.
+Constraints :
+1 <= t <= 10^2
+0 <= M <= 10^5
+0 <= N < M
+Time Limit: 1sec
+
+Where 'M' is the size of the singly linked list.
+Remember/Consider :
+While specifying the list elements for input, -1 indicates the end of the singly linked list and hence, would never be a list element.
+*/
+
+
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class Node<T> {
+    	T data;
+    	Node<T> next;
+    
+    	public Node(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+
+	public static Node<Integer> appendLastNToFirst(Node<Integer> head, int n) {
+		//Your code goes here
+	   Node<Integer> node=head,checkNode=null,newHead=null;
+        if (n==0)
+        {
+            return head;
+        }
+        
+        int count=0;
+        while(node!=null)
+        {
+            node=node.next;
+            count=count+1;
+        }
+        if (count<n)
+        {
+            return head;
+        }
+        
+        n=count-n;
+        node=head;
+        for (int i=0;i<n-1;i++)
+        {
+            node=node.next;
+        }
+        checkNode=node.next;
+        node.next=null;
+        newHead=checkNode;
+        //System.out.println("Shifting from element: "+checkNode.data);
+        //System.out.println("Now last element is: "+node.data);
+        //System.out.println("Now first element is: "+newHead.data);
+        while(checkNode.next!=null)
+        {
+            checkNode=checkNode.next;
+        }
+        checkNode.next=head;
+        head=newHead;
+        return head;
+	}
+
+}
