@@ -1,0 +1,46 @@
+Check whether a given String 'S' is a palindrome using recursion.
+
+
+Return true or false.
+
+
+Note:
+You don’t need to print anything. Just implement the given function.
+Example:
+Input: s = "racecar"
+Output: true
+Explanation: "racecar" is a palindrome.
+Input Format:
+The first and only line of the input contains string S.
+Output format:
+Return a boolean value True or False.
+
+
+
+
+
+public class Solution {
+    public static boolean isPalindrome(String str) {
+        // Write your code here.
+         return (isStringPalindrome(str,0,str.length()-1));
+	}
+    
+    public static boolean isStringPalindrome(String str, int si, int ei)
+    {
+        if (si>=ei)
+        {
+            return true;
+        }
+        boolean check=true;
+        if (str.charAt(si)==str.charAt(ei))
+        {
+            check=isStringPalindrome(str,si+1,ei-1);
+        }
+        else
+        {
+            check=false;
+        }
+        return check;
+    
+    }
+}
